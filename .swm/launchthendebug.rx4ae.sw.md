@@ -5,7 +5,18 @@ file_version: 1.1.2
 app_version: 1.7.2
 ---
 
-An attempt to delay a process launch until a debugger can be attached.
+This project was born when trying to determine why a process terminated almost immediately after it was launched from a terminal. It seeks to control just when the process to be debugged starts and attach a debugger to it programmatically before it terminates.
+
+<br/>
+
+Currently the process is launched but runs without interruption and quickly terminates before a debugger can be attached. This code block is key to the program and needs the addition of some way to attach to the process before or immediately after its launch and pause the process for inspection and single-stepping through code.
+<!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
+### 📄 LaunchThenDebug/Program.cs
+```c#
+11     var psi = new ProcessStartInfo("msiexec.exe", "C:\\Users\\kellyb\\Downloads\\vagrant_2.3.4_windows_amd64.msi /L*V \"vagrant-install.log\"");
+12     var targetProcess = Process.Start(psi);
+13     targetProcess?.WaitForExit();
+```
 
 <br/>
 
